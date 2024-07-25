@@ -6,7 +6,7 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 19:18:45 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/07/23 12:53:08 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/07/25 10:40:13 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@
 # define HEIGHT 800
 # define WIDTH 800
 
+// structs used
+
+typedef struct s_data
+{
+    void	*win_ptr;
+}	t_data;
+
+typedef struct s_rect
+{
+    int	x;
+    int	y;
+    int width;
+    int height;
+    int color;
+}	t_rect;
+
 // experiment functions
 void printlines(mlx_image_t* img);
 void printsquare(mlx_image_t* img);
@@ -32,5 +48,11 @@ void printtriangle(mlx_image_t* img);
 void printfullsquare(mlx_image_t* img);
 void setwhite(mlx_image_t *img);
 void printsine(mlx_image_t *img);
+void printparabola(mlx_image_t *img);
+
+void render_rect(mlx_image_t *img);
+void render_pollock(mlx_image_t *img);
+
+int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue);
 
 #endif

@@ -6,13 +6,15 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:12:29 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/07/23 12:52:59 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/07/25 11:35:42 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
 //EXPERIMENTING WITH FUNCTIONS TO PRINT DIFFERENT THINGS
+
+///////////////////////////////////////     experimenting with lines and shapes     /////////////////////////////////////////////////////////////////
 
 // a. print line - set each point ny its coordinates
 void printlines(mlx_image_t* img)
@@ -93,22 +95,72 @@ void printsine(mlx_image_t *img)
 	}
 }
 
-void printfullsquare(mlx_image_t* img)
+void printparabola(mlx_image_t *img)
 {
-	int a = 90;
-	int start = 90;
-	int end = 180;
-
-	while (a <= end)
+	int x = -10;
+	int offset = 200;
+	while (x <= 10)
 	{
-		mlx_put_pixel(img, a, end, 0x33cc33FF); //top line
-		mlx_put_pixel(img, start, a, 0x33cc33FF); //left side
-		a++;
+		mlx_put_pixel(img, x + offset, (pow(x, 2)) + offset * 2, 0x33cc33FF); // sine line
+		x += 0.1;
 	}
 }
+
+void render_rect(mlx_image_t *img)
+{
+    int	offset = 100;
+    int width = 400;
+    int height = 200;
+    int color = 0x33cc33FF;
+
+    int	i;
+    int j;
+
+    i = offset;
+    while (i < offset + height)
+    {
+        j = offset;
+        while (j < offset + width)
+            mlx_put_pixel(img, j++, i, color);
+        ++i;
+	}
+}
+
+void render_pollock(mlx_image_t *img)
+{
+    int	offset = 100;
+    int width = 400;
+    int height = 200;
+
+    int	i;
+    int j;
+
+    i = offset;
+    while (i < offset + height)
+    {
+        j = offset;
+        while (j < offset + width)
+            mlx_put_pixel(img, j++, i, rand() % 100000000);
+        ++i;
+	}
+}
+
+///////////////////////////////////////     experimenting with blocks     /////////////////////////////////////////////////////////////////
 
 // c. coloring all pixels of window white - set a defined length of pixels with memset
 void setwhite(mlx_image_t *img)
 {
 	memset(img->pixels, 255, ((img->width) * (img->height)) * sizeof(int32_t));
+	memset(img->pixels, 0, ((img->width - 200) * (img->height - 200)) * sizeof(int32_t));
 }
+
+///////////////////////////////////////     experimenting with colors     /////////////////////////////////////////////////////////////////
+
+// a. setting up color by hex value that we get from elsewhere:
+
+// b. cerating integer from its red, green, and blue values
+int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
+{
+    return (red << 16 | green << 8 | blue);
+}
+
