@@ -6,7 +6,7 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:12:29 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/07/25 11:35:42 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/07/25 17:48:19 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,40 @@ void render_rect(mlx_image_t *img)
 	}
 }
 
+void printhex(mlx_image_t *img)
+{
+	int side = 200;
+	int va = sqrt(pow(side, 2) - pow(side/2, 2));
+	int i = 0;
+	int offset = 300;
+	// A[100, 100], B[100 - side/2, 100 + va], C[100 + side/2, 100 + va]
+	int Ax = side/2 + offset;
+	int Ay = offset;
+	while (i <= side)
+	{
+		mlx_put_pixel(img, Ax - side/2 + i, Ay - va, 0xFF0000FF);
+		mlx_put_pixel(img, Ax + i/2, Ay + ((i * va) / side), 0xFF0000FF);
+		mlx_put_pixel(img, Ax - i/2, Ay + ((i * va) / side), 0xFF0000FF);
+
+		mlx_put_pixel(img, Ax - side/2 + i, Ay + va, 0x33cc33FF);
+		mlx_put_pixel(img, Ax + i/2, Ay - ((i * va) / side), 0x33cc33FF);
+		mlx_put_pixel(img, Ax - i/2, Ay - ((i * va) / side), 0x33cc33FF);
+
+		mlx_put_pixel(img, Ax - side + 2*i, Ay, 0x33cc33FF);
+		i++;
+	}
+}
+
+///////////////////////////////////////     experimenting with blocks     /////////////////////////////////////////////////////////////////
+
+// coloring all pixels of window white - set a defined length of pixels with memset
+void setwhite(mlx_image_t *img)
+{
+	memset(img->pixels, 255, ((img->width) * (img->height)) * sizeof(int32_t));
+	memset(img->pixels, 0, ((img->width - 200) * (img->height - 200)) * sizeof(int32_t));
+}
+
+// color all pixels of a set rectangle with random color
 void render_pollock(mlx_image_t *img)
 {
     int	offset = 100;
@@ -145,22 +179,12 @@ void render_pollock(mlx_image_t *img)
 	}
 }
 
-///////////////////////////////////////     experimenting with blocks     /////////////////////////////////////////////////////////////////
-
-// c. coloring all pixels of window white - set a defined length of pixels with memset
-void setwhite(mlx_image_t *img)
-{
-	memset(img->pixels, 255, ((img->width) * (img->height)) * sizeof(int32_t));
-	memset(img->pixels, 0, ((img->width - 200) * (img->height - 200)) * sizeof(int32_t));
-}
-
 ///////////////////////////////////////     experimenting with colors     /////////////////////////////////////////////////////////////////
 
 // a. setting up color by hex value that we get from elsewhere:
 
-// b. cerating integer from its red, green, and blue values
+// b. creating integer from its red, green, and blue values
 int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
     return (red << 16 | green << 8 | blue);
 }
-

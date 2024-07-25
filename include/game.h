@@ -6,7 +6,7 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 19:18:45 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/07/25 10:40:13 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/07/25 17:44:30 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct s_rect
     int height;
     int color;
 }	t_rect;
+
+// utils
+static void ft_error(void);
 
 // experiment functions
 void printlines(mlx_image_t* img);
